@@ -1,6 +1,4 @@
 import * as C  from './styles';
-import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faEye,faEyeLowVision } from '@fortawesome/free-solid-svg-icons'
 import { Eye, EyeSlash } from 'phosphor-react'
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
@@ -15,7 +13,7 @@ const Login = () => {
     //const cookies = new Cookies();
     const[passReveal,setpassReveal] = useState(false);
     const[loginMail,setloginMail] = useState(['Email','Username']);
-    const jwt = cookies.get('jwt');
+    //const jwt = cookies.get('jwt');
     const navigate = useNavigate();
     //const notify = useNotification();
 

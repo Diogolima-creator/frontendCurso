@@ -40,15 +40,6 @@ export const Container = styled.div`
         border-radius:0px;
         animation: modal 2s;
 
-        .icon{
-            position:relative;
-            right:30px;
-            width:28px;
-            height:28px;
-            cursor:pointer;
-            animation: modal 2s;
-        }
-
         form{
             display:flex;
             flex-direction:column;
@@ -58,7 +49,15 @@ export const Container = styled.div`
             font-size:28px;
             letter-spacing: 1px;
             margin-bottom:8px;
-            animation: modal 2s;
+            
+        }
+
+        .icon{
+          position:relative;
+          right:30px;
+          width:28px;
+          height:28px;
+          cursor:pointer;   
         }
 
         input{
@@ -78,7 +77,7 @@ export const Container = styled.div`
                 opacity:.4;
                 color:white;
             }
-            animation: modal 2s;
+            
         }
 
         button{
@@ -92,7 +91,7 @@ export const Container = styled.div`
             border:1px solid white;
             margin-right:15px;
             transition:.8s;
-            animation: modal 2s;
+            
         }
         
         button:hover{
@@ -119,8 +118,7 @@ export const Container = styled.div`
             margin-bottom:3px;
             font-size:12px;
             cursor:pointer;
-            animation: modal 2s;
-            width:120px;;
+            width:120px;
         }
 
         p:hover{

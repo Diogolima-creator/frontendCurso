@@ -11,12 +11,14 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
     //const cookies = new Cookies();
-    const[passReveal,setpassReveal] = useState(false);
-    const[loginMail,setloginMail] = useState(['Email','Username']);
+    const[passReveal,setPassReveal] = useState(false);
+    const[loginMail,setLoginMail] = useState(['Email','Username']);
     //const jwt = cookies.get('jwt');
     const navigate = useNavigate();
     //const notify = useNotification();
-
+    
+    const changePassReveal = () => {if(passReveal === false){setPassReveal(true)}else{setPassReveal(false)}}
+    const toggleLoginMail = () => {if(loginMail[0] === 'Email'){setLoginMail(['Username','Email'])}else{setLoginMail(['Email','Username'])}}
 
     return(
         <C.Container>
@@ -30,15 +32,14 @@ const Login = () => {
                     <input id='users' placeholder={loginMail[1]}></input>
                     <label>Password</label>
                     <div>
-                        <input id="pass" type="password" placeholder='Password'></input>
-                        { passReveal === false ? <EyeSlash /*onClick={changePass}*/  className='icon'/> : <Eye /*onClick={changePass}*/ className='icon' /> }
+                        <input id="pass" type="password" placeholder='Password' ></input>
+                        {passReveal === false ? <EyeSlash onClick={changePassReveal} className='icon'/> : <Eye onClick={changePassReveal} className='icon'/>}
                     </div>
                     <div className='form-login-buttons'>
-                        <p /*onClick={loginReverse}*/>Login using {loginMail[0]}</p>
+                        <p onClick={toggleLoginMail}>Login using {loginMail[0]}</p>
                         <button type="submit" /*onClick={loginUser}*/>Login</button>
                         <button><Link to="/register" className='btn-register'>Sign up</Link></button>
                     </div>
-                    
                 </form>
             </div>     
             {/* {<Poupup top={'50'} left={'850'} text={notify.text} anima={notify.animaPop}/>} */}

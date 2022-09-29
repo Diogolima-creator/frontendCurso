@@ -1,4 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+
 body{
   margin:0px;
   padding:0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff2f2; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8b72a3; 
+  border-radius: 45px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8b72a3; 
 }

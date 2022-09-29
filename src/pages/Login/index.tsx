@@ -1,4 +1,4 @@
-import * as C  from './styles';
+import * as C from './styles';
 import { Eye, EyeSlash } from 'phosphor-react'
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';

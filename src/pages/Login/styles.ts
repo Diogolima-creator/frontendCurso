@@ -136,5 +136,15 @@ export const Container = styled.div`
         }
     }
 
+    @media only screen and (min-width: 1325px){
+        
+        .form-login{
+            width:350px;    
+        }
+
+        .form-h1{
+            margin-top:0px;
+        }
+    }
    
 `;

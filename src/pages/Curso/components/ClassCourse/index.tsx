@@ -8,7 +8,7 @@ import { CheckCircle } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 
 
-export const ClassCourse = (user:string, classes:string) => {
+export const ClassCourse = () => {
     //const { state,dispatch } = useCourse();
     //const cookies = new Cookies;
     //const id = cookies.get('id');
@@ -20,7 +20,7 @@ export const ClassCourse = (user:string, classes:string) => {
     return(
         <C.Container>
             <div className='class-header'>
-                {classes !== undefined && posModule !== '' && <div className="ballCheck"><CheckCircle /*className={/*state.lastModule >= posModule && state.lastClass >= getAllClasses(posModule,posClass) ? 'Icon' : 'NoIcon' *//></div>}
+                {/* classes !== undefined && posModule !== '' && <div className="ballCheck"><CheckCircle className={/*state.lastModule >= posModule && state.lastClass >= getAllClasses(posModule,posClass) ? 'Icon' : 'NoIcon' ></div>*/}
                 <div>
                     <h1>{'state.classNow'}</h1>
                     <p>Module {'state.moduleNow'}</p> 

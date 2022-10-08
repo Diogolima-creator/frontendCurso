@@ -17,7 +17,7 @@ export const Container = styled.div`
         color:white;
         font-size:32px;
         font-weight:bold;
-        animation: modal 2s;
+        animation: modal 1.5s;
         p{
             font-size:18px;
             margin-bottom:50px;
@@ -38,7 +38,7 @@ export const Container = styled.div`
         color:white;
         box-shadow:0px 0px 3px 3px #551b88;
         border-radius:0px;
-        animation: modal 2s;
+        animation: modal 1.5s;
 
         form{
             display:flex;

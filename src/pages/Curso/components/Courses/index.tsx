@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 //import { CourseAction, useCourse } from '../../context/CourseContext'
 //import Cookies from 'universal-cookie';
 
-export const Courses = (user:string) => {  
+export const Courses = () => {  
 
     const[classes, setClasses] = useState();
     //const{state,dispatch} = useCourse();
@@ -16,8 +16,8 @@ export const Courses = (user:string) => {
 
     return(
         <C.Container>
-            <ClassCourse user={user} classes={classes} />
-            <MenuRight user={user} classes={classes} />
+            <ClassCourse  />
+            <MenuRight  />
         </C.Container>
     )
 }

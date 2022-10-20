@@ -8,15 +8,17 @@ import { Posts } from '../Posts';
 //import { Loading } from '../Loading/index';
 //import { Poupup } from '../Poupup';
 //import { useNotification } from '../../hooks/useNotification';
-
+import { useAppSelector, useAppDispatch } from '../../../../hooks/redux';
 const API_KEY = "834bc2e5cfe44c40b141cf46157eb0d0"; // api news
 
 export const Home = ({user}:any) => {
 
+    const posts = useAppSelector((state)=> state.course.posts)
+    const dispatch = useAppDispatch()
+
     //const cookies = new Cookies();
     //const jwt = cookies.get('jwt');
     //const id = cookies.get('id');
-    const[posts,setPosts] = useState([]);
     const[news,setNews] = useState([]);
     const[color,setColor] = useState('')
     const[loadingProfile,setLoadingProfile] = useState(false);

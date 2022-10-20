@@ -2,52 +2,20 @@ import * as C from './styles';
 import { useState } from 'react';
 import CountUp from 'react-countup';
 import { Link, useNavigate } from 'react-router-dom';
+import { signUp } from '../../http/login';
 //import Cookies from 'universal-cookie';
 //import { useNotification } from '../../hooks/useNotification';
 //import { Poupup } from '../../components/Poupup';
+import { changeForm } from '../../yup';
 
 const Register = () => {
     
     const[plan,setPlan] = useState(4);
-    const[username,setUser] = useState('');
-    const[email,setEmail] = useState('');
-    const[password,setPass] = useState('');
-    const[cpass,setCpass] = useState('');
     //const cookies = new Cookies;
     let navigate = useNavigate();
     //const notify = useNotification();
 
-    const changeForm = () => {
-
-        setUser((document.getElementById('user') as HTMLInputElement).value);
-        setEmail((document.getElementById('email')as HTMLInputElement).value);
-        setPass((document.getElementById('pass') as HTMLInputElement).value);
-        setCpass((document.getElementById('cpass') as HTMLInputElement).value);
-    
-        if((document.getElementById('user') as HTMLInputElement).value !== '' && (document.getElementById('email') as HTMLInputElement).value !== '' && (document.getElementById('pass') as HTMLInputElement).value !== '' && (document.getElementById('cpass') as HTMLInputElement).value !== ''){  
-            if((document.getElementById('pass') as HTMLInputElement).value === (document.getElementById('cpass') as HTMLInputElement).value){
-                if((document.getElementById('pass') as HTMLInputElement).value.length > 8){
-                    document.getElementById('form-login')!.style.display = 'none';
-                    document.getElementById('form-level')!.style.display = 'flex';
-                }else{
-                    document.getElementById('passdont2')!.style.display = 'none';
-                    document.getElementById('passdont')!.style.display = 'none';
-                    document.getElementById('passdont1')!.style.display = 'flex';
-                }
-            }else{
-                document.getElementById('passdont2')!.style.display = 'none';
-                document.getElementById('passdont')!.style.display = 'flex';
-            }
-            
-        }else{
-            document.getElementById('passdont2')!.style.display = 'flex';
-        }
-    }
-
-    const changeBack = () => {
-        document.getElementById('form-login')!.style.display = 'flex';
-        document.getElementById('form-level')!.style.display = 'none';
-    }
+    const changeBack = () => { document.getElementById('form-login')!.style.display = 'flex'; document.getElementById('form-level')!.style.display = 'none'; }
 
     const changeSelect = (id:number,color:string) => {
         if(plan !== 4){
@@ -57,6 +25,21 @@ const Register = () => {
         document.getElementById(`${id}`)!.style.border = `2px solid ${color}`;
         setPlan(id)
     }
+
+    async function registerUser(){
+        let user = (document.getElementById('user') as HTMLInputElement).value
+        let email = (document.getElementById('email') as HTMLInputElement).value
+        let password = (document.getElementById('pass') as HTMLInputElement).value
+        let level = (plan === 0 ? 'Gold' : plan === 1 ? 'Platinum ' : plan === 2 ? 'Diamond' : '')
+        let cpass = (document.getElementById('cpass') as HTMLInputElement).value
+
+        let res = await signUp(user,email,password,level,cpass)
+        if(res.status === 'ok'){
+            navigate('/curso')
+        }else{
+            console.log(res.error)
+        }
+    }  
 
     return(
         <C.Container>
@@ -109,7 +92,7 @@ const Register = () => {
                 </div>
                 <div>
                     <button onClick={changeBack}>Back</button>
-                    <button className='btn-complete'>Complete</button>
+                    <button onClick={()=> registerUser()} className='btn-complete'>Complete</button>
                 </div>
             </div>
             { /*<Poupup top={'50'} left={'850'} text={notify.text} anima={notify.animaPop */}

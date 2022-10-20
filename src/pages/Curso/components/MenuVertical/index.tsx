@@ -1,28 +1,26 @@
-import styled from "styled-components";
 import * as C from './styles';
 import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import { faHouse, faShuttleSpace, faCirclePlay, faJetFighter } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from "react";
-//import { CourseAction, useCourse } from "../../context/CourseContext";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { setMenuSelected } from "../../../../store/course";
 
 export const MenuVertical = () => {
 
-    //const {state, dispatch} = useCourse();
+    const menuSelected = useAppSelector((state)=> state.course.menuSelected)
+    const dispatch = useAppDispatch()
 
     const changeSelect = (value: number) => {
-      /*  document.getElementById(`${state.menuSelected}`)!.style.backgroundColor = 'transparent';
-      document.getElementById(`${state.menuSelected}`)!.style.color = '#8b72a3';
-       dispatch({
-            type: CourseAction.setmenuSelected,
-            payload: value
-        })
-      */
+        document.getElementById(`${menuSelected}`)!.style.backgroundColor = 'transparent';
+        document.getElementById(`${menuSelected}`)!.style.color = '#8b72a3';
+        dispatch(setMenuSelected(value))
+      
     }
 
     useEffect(()=> {
-        /*document.getElementById(`${state.menuSelected}`)!.style.backgroundColor = '#241434';
-        document.getElementById(`${state.menuSelected}`)!.style.color = 'white';*/
-    },[/*state.menuSelected*/])
+        document.getElementById(`${menuSelected}`)!.style.backgroundColor = '#241434';
+        document.getElementById(`${menuSelected}`)!.style.color = 'white';
+    },[menuSelected])
 
     return(
         <C.Container>

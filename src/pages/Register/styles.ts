@@ -17,7 +17,7 @@ export const Container = styled.div`
         color:white;
         font-size:32px;
         font-weight:bold;
-        animation: modal 1.5s;
+        animation: modal 1s;
         p{
             font-size:18px;
             margin-bottom:50px;
@@ -55,7 +55,7 @@ export const Container = styled.div`
             width:28px;
             height:28px;
             cursor:pointer;
-            animation: modal 2s;
+            
         }
 
         form{
@@ -67,7 +67,7 @@ export const Container = styled.div`
             font-size:28px;
             letter-spacing: 1px;
             margin-bottom:8px;
-            animation: modal 2s;
+            
         }
 
         input{
@@ -87,7 +87,7 @@ export const Container = styled.div`
                 opacity:.4;
                 color:white;
             }
-            animation: modal 2s;
+            
         }
 
         button{
@@ -126,7 +126,7 @@ export const Container = styled.div`
         }
 
         .form-login-buttons{
-            animation: modal 2s;
+            
         }
 
         .btn-register:hover{
@@ -162,7 +162,7 @@ export const Container = styled.div`
         color:white;
         box-shadow:0px 0px 3px 3px #551b88;
         border-radius:0px;
-        animation: modal 2s;
+        animation: modal 1.5s;
         flex-direction:column;
 
         .title{
@@ -230,7 +230,7 @@ export const Container = styled.div`
             border:1px solid white;
             margin-right:15px;
             transition:.8s;
-            animation: modal 2s;
+            
         }
         
         button:hover{
@@ -280,14 +280,14 @@ export const Container = styled.div`
             opacity:.4;
             color:white;
         }
-        animation: modal 2s;
+        
     }
 
     label{
       font-size:22px;
       letter-spacing: 1px;
       margin-bottom:0px;
-      animation: modal 2s;
+      
     }
   }
   }

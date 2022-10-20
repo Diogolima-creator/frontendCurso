@@ -17,7 +17,7 @@ export const Container = styled.div`
         color:white;
         font-size:32px;
         font-weight:bold;
-        animation: modal 1.5s;
+        animation: modal 1s;
         p{
             font-size:18px;
             margin-bottom:50px;

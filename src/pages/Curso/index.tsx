@@ -8,26 +8,28 @@ import { MenuVertical } from './components/MenuVertical';
 import { Home } from './components/Home';
 import { Courses } from './components/Courses';
 import { Lives } from './components/Lives';
+import { useAppSelector } from '../../hooks/redux';
+import { useCookies } from "react-cookie";
 
 const Curso = () => {
-  //  const {state} = useCourse();
-  //  const cookies = new Cookies();
-    const navigate = useNavigate();
-  //  const jwt = cookies.get('jwt');
+    const [cookies, setCookie, removeCookie] = useCookies(['id','jwt']);
+    const jwt = cookies.jwt;
     const[user,setUser] = useState([]);
-    //const id = cookies.get('id')
-
-  
+    const id = cookies.id
+    const menuSelected = useAppSelector((state)=> state.course.menuSelected)
     
+    useEffect(()=>{
+        
+    },[])
+
     return(
         <C.Container>
             <Header user={user} />
             <div className='curse'>
                 <MenuVertical />
-                <Lives  />
-                {/*{ state.menuSelected === 0 && <Home user={user} /> }
-                { state.menuSelected === 1 && <Courses user={user} /> }
-                { state.menuSelected === 2 && <Lives /> }*/}
+                { menuSelected === 0 && <Home user={user} /> }
+                { menuSelected === 1 && <Courses /> }
+                { menuSelected === 2 && <Lives /> }
             </div>
         </C.Container>
     )

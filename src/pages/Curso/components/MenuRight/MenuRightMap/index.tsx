@@ -2,16 +2,20 @@ import { useState, useEffect } from 'react';
 import * as C from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDown,faAngleUp} from '@fortawesome/free-solid-svg-icons';
-//import { useCourse,CourseAction } from '../../context/CourseContext';
 import Cookies from 'universal-cookie';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
+import { setClassNow, setModuleNow, setVideoClassNow } from '../../../../../store/course';
+import { updateClass } from '../../../../../http/user';
 
-export const MenuRightMap = ({classeMenu,user}:any) => {
-    //const cookies = new Cookies;
-    //const { state ,dispatch } = useCourse();
-    //const id = cookies.get('id');
-    //const jwt = cookies.get('jwt');
-    
+export const MenuRightMap = ({classeMenu}:any, {user}:any) => {
+    const cookies = new Cookies;
+    const lastClass = useAppSelector((state) => state.course.lastClass)
+    const lastModule = useAppSelector((state) => state.course.lastModule)
+    const dispatch = useAppDispatch();
+    const id = cookies.get('id');
+    const jwt = cookies.get('jwt');
+    console.log(lastClass, lastModule)
     
     const handleWidth = (key:number) => {
         if( document.getElementById(`${key+'Map'}`)!.style.display !== 'none' ){
@@ -27,36 +31,25 @@ export const MenuRightMap = ({classeMenu,user}:any) => {
         }   
     }
 
-
-    const updateClass = (item:string,key:number) => {
-        /*dispatch({
-            type: CourseAction.setclassNow,
-            payload: item[0]
-        })
-        dispatch({
-            type: CourseAction.setmoduleNow,
-            payload: (key+1)+'.'+Object.keys(classeMenu)[key]
-          })
-        dispatch({
-            type: CourseAction.setvideoClassNow,
-            payload: item[1]
-        })*/
-        
+    const updateClassFunction = (item:any,key:number) => {
+        dispatch(setClassNow(item[0]))
+        dispatch(setModuleNow((key+1)+'.'+Object.keys(classeMenu)[key]))
+        dispatch(setVideoClassNow(item[1]))
         let Class = item[0];
         let Module = (key+1)+'.'+Object.keys(classeMenu)[key];
         let urlVideo = item[1];
 
-        //fetchClassUser(Class,Module,urlVideo);
+        updateClass({id,classes:[Class,Module,urlVideo]},jwt);
     }
 
     useEffect(() => {
         
-    },[/*state.lastClass*/])
+    },[lastClass])
 
     const getAllClasses = (key:number) =>{
         let semiTotal = 0;
         for(let i =0;i<key;i++){
-            semiTotal = semiTotal //+ Object.values(classeMenu)[i].length
+            semiTotal = semiTotal + Object.values(classeMenu)[i].length
         }
         return semiTotal
     }
@@ -72,12 +65,12 @@ export const MenuRightMap = ({classeMenu,user}:any) => {
                         {<FontAwesomeIcon icon={faAngleUp} id={key+'IconUp'} className="iconUp" />} 
                     </div>
                     
-                    <p>{/*(Object.values(classeMenu)[key]).length*/} Aulas</p>
+                    <p>{(Object.values(classeMenu)[key]).length} Aulas</p>
                 </div>
                 <div id={key+'Map'} className='Map-Values'>
-                    {/*Object.values(classeMenu)[key].map((item,label) => <p onClick={() => updateClass(item,key)}><div className={state.lastModule >= key && state.lastClass >= 
+                    {Object.values(classeMenu)[key].map((item:any,label:number) => <p onClick={() => updateClassFunction(item,key)}><div className={parseInt(lastModule) >= key && parseInt(lastClass) >= 
                         (key > 0 ? getAllClasses(key) : 0)+label+1  ? 'ballCheckBord' : 'ballCheck' }><FontAwesomeIcon 
-                    icon={faCheckCircle} className={state.lastModule >= key && state.lastClass >= (key > 0 ? getAllClasses(key) : 0)+label+1 ? 'Icon' : 'NoIcon' } /></div>{item[0]}</p>)*/}
+                        icon={faCheckCircle} className={parseInt(lastModule) >= key && parseInt(lastClass) >= (key > 0 ? getAllClasses(key) : 0)+label+1 ? 'Icon' : 'NoIcon' } /></div>{item[0]}</p>)}
                 </div>
             
             </div>

@@ -7,6 +7,7 @@ interface PhotoType {
   url: string
 }
 
+
 export const getAll = async () => {
     let list:PhotoType[] = [];
     
@@ -25,9 +26,8 @@ export const getAll = async () => {
     return list;
 }
 
-export const insertProfile = async (file) => {
+export const insertProfile = async (file:any) => {
     if(['image/jpeg','image/jpg','image/png'].includes(file.type)){
-
         let randomName = createID();
         let newFile = ref(storage, `profilePics/${randomName}`);
         let upload = await uploadBytes(newFile, file);
@@ -38,7 +38,7 @@ export const insertProfile = async (file) => {
     }
 }
 
-export const insertPosts = async (file) => {
+export const insertPosts = async (file:any) => {
     if(['image/jpeg','image/jpg','image/png'].includes(file.type)){
 
         let randomName = createID();

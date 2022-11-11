@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div((color: string)=>`
+interface userLevel{
+    color:string
+}
+
+export const Container = styled.div(({color}:userLevel)=>`
     width:100%;
     height:100%;
     background-color: #241434;

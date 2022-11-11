@@ -1,7 +1,15 @@
 
+interface loginSuccessful {
+  accessToken:string
+  status:string
+  _id:string
+  error:string
+}
+
+
 export async function signUp(username:string, email:string, password:string, level:string, passwordConfirmation:string){
 
-  let result = await fetch('http://localhost:9999/api/signup',{
+  let result:loginSuccessful = await fetch('http://localhost:9999/api/signup',{
                 method: 'POST',
                 headers:{
                     'Content-type' : 'application/json'
@@ -16,7 +24,7 @@ export async function signUp(username:string, email:string, password:string, lev
 
 export async function loginEmail(email:string, password:string) {
 
-  let result = await fetch('http://localhost:9999/api/loginEmail',{
+  let result:loginSuccessful = await fetch('http://localhost:9999/api/loginEmail',{
                 method: 'POST',
                 headers:{
                     'Content-type' : 'application/json'
@@ -30,7 +38,7 @@ export async function loginEmail(email:string, password:string) {
 }
 
 export async function loginUsername(username:string, password:string){
-  let result = await fetch('http://localhost:9999/api/loginUsername',{
+  let result:loginSuccessful = await fetch('http://localhost:9999/api/loginUsername',{
     method: 'POST',
     headers:{
         'Content-type' : 'application/json'

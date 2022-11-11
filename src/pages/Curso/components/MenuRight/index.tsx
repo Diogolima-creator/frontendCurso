@@ -5,9 +5,8 @@ import { MenuRightMap } from './MenuRightMap';
 import { MenuRightOptions } from './MenuRightOptions';
 import { useState } from 'react';
 
-export const MenuRight = () => {
+export const MenuRight = ({classes}:any, {user}:any) => {
     
-    const[classes, setClasses] = useState(undefined)
 
     const openMenuOptions = () => {
         if(document.getElementById('MenuRightOptions')!.style.display !== 'flex'){
@@ -20,11 +19,11 @@ export const MenuRight = () => {
     return(
         <C.Container>
             <div className='Menu-header'>
-                {classes !== undefined /*&& classes.Type === 'JavaScript' */&& <div className='img'>JS</div>}
-                {classes !== undefined /*&& classes.Type === 'React' */&& <img src='https://thebhwgroup.com/sites/default/images/react_logo.png' alt = '' ></img>}
+                {classes !== undefined && classes.Type === 'JavaScript' && <div className='img'>JS</div>}
+                {classes !== undefined && classes.Type === 'React' && <img src='https://thebhwgroup.com/sites/default/images/react_logo.png' alt = '' ></img>}
                 <div className='Menu-header-text'>
-                    <p className='title'>Curso {classes !== undefined  /*classes.Type : ''*/}</p>
-                    <p className='author'>{classes !== undefined /*classes.Author : ''*/}</p>
+                    <p className='title'>Curso {classes !== undefined  ? classes.Type : ''}</p>
+                    <p className='author'>{classes !== undefined ? classes.Author : ''}</p>
                     
                 </div>
                 <FontAwesomeIcon onClick = {openMenuOptions} icon={faAngleDown} className="icon"/>
@@ -34,7 +33,7 @@ export const MenuRight = () => {
                 
             </div>
             <div className='Menu-Modules-list'>
-                {classes !== undefined && <MenuRightMap /> }
+                {classes !== undefined && <MenuRightMap user={user} classeMenu={classes.Modules[0]}/> }
             </div>
         </C.Container>
     )

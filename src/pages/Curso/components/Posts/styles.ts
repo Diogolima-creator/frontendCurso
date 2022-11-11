@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div((color:any) =>`
+export const Container = styled.div(({color}:any) =>`
         width:560px;
         border-radius:5px;
         padding:20px;
@@ -49,6 +49,7 @@ export const Container = styled.div((color:any) =>`
         .posts-img{
             margin-left:20px;
             img{
+                max-height:500px;
                 width:500px;
             }
             

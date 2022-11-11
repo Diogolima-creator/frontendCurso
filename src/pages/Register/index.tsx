@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CountUp from 'react-countup';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUp } from '../../http/login';
-//import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
 //import { useNotification } from '../../hooks/useNotification';
 //import { Poupup } from '../../components/Poupup';
 import { changeForm } from '../../yup';
@@ -11,7 +11,7 @@ import { changeForm } from '../../yup';
 const Register = () => {
     
     const[plan,setPlan] = useState(4);
-    //const cookies = new Cookies;
+    const cookies = new Cookies;
     let navigate = useNavigate();
     //const notify = useNotification();
 
@@ -34,6 +34,18 @@ const Register = () => {
         let cpass = (document.getElementById('cpass') as HTMLInputElement).value
 
         let res = await signUp(user,email,password,level,cpass)
+
+        cookies.set('id',res!._id,{
+            secure:true,
+            sameSite:true,
+            expires: new Date(new Date().getTime() + 86400 * 1000)
+        })
+        cookies.set('jwt',res!.accessToken,{
+            secure:true,
+            sameSite:true,
+            expires: new Date(new Date().getTime() + 86400 * 1000)
+        })
+
         if(res.status === 'ok'){
             navigate('/curso')
         }else{

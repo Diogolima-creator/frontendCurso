@@ -1,31 +1,69 @@
 import * as C from './styles';
 import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import { faThumbsUp,faComment,faTurnDown,faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-//import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
 import { useEffect, useState } from 'react';
 import { Comments } from '../Comments';
+import { useAppSelector } from '../../../../hooks/redux/index';
+import { removeLike, addLike } from '../../../../http/posts';
+import { PostsType } from '../../../../entities/posts';
 
-export const Posts = ({item, num}:any) => {
 
+export const Posts = ({item, num}:PostsType) => {
 
     let colors = {
-        Gold: 'Gold',
-        Platinum: '#e5e4e2',
-        Diamond : '#b9f2ff'}
+        GOLD: 'Gold',
+        PLATINUM: '#e5e4e2',
+        DIAMOND : '#b9f2ff'}
     
-
+    const profilePic = useAppSelector((state) => state.user.profilePic)
     const colorsK = Object.keys(colors)
     const colorsV = Object.values(colors)
-    let color = colorsV[colorsK.indexOf(item.level)] 
-    //const cookies = new Cookies;
-    //const id = cookies.get('id');
-    //const jwt = cookies.get('jwt');
-    const[user,setUser] = useState([]);
+    let color = colorsV[colorsK.indexOf(item.level.toUpperCase())] 
+    const cookies = new Cookies;
+    const id = cookies.get('id');
+    const jwt = cookies.get('jwt');
     const[comments,setComments] = useState(item.Comments)
     const[likes,setLikes] = useState(item.Likes.length)
-    const[liked,setLiked] = useState();
+    const[liked,setLiked] = useState(false);
 
-    
+    const commentsLength = (key:number) => {
+        document.getElementById('post-area-comments'+key)!.style.display = 'flex'
+    }
+
+    const ifLiked = (item:string[]) => {
+        const result = item.filter(usersLiked => usersLiked === id)
+        if(result.length === 1){
+            setLiked(true)
+        }else{
+            setLiked(false)
+        }
+     }
+
+    async function removeLikes (idPost: string, idUser: string, jwt:string) {
+        let result = await removeLike(idPost,idUser,jwt)
+        if(result !== null){  
+            setLikes(result.Likes.length)
+            ifLiked(result.Likes);
+        }else{
+            alert('AAA')
+        }
+    }
+
+    async function addLikes (idPost: string, idUser: string, jwt:string) {
+        let result = await addLike(idPost,idUser,jwt)
+        if(result !== null){  
+            setLikes(result.Likes.length)
+            ifLiked(result.Likes);
+        }else{
+            alert('AAA')
+        }
+    }
+
+    useEffect(() => {
+        ifLiked(item.Likes);
+    },[])
+
     return(
 
         <C.Container color={color}>
@@ -43,14 +81,14 @@ export const Posts = ({item, num}:any) => {
             <div className='posts-footer-date'>
                 <div className='posts-footer-date-p'>
                     <p>{likes} Likes </p>
-                    <p className='commentslength'>{comments.length} Comentarios</p>
+                    <p className='commentslength' onClick={()=> commentsLength(num)}>{comments.length} Comentarios</p>
                 </div>
                 <hr></hr>
             </div>
             
             <div className='posts-footer'>
                 <FontAwesomeIcon icon={faThumbsUp} className="icon"/>
-                <p >Like{liked === true ? 'd': ''} </p>
+                <p onClick={liked === true ? ()=> removeLikes(item.id, id, jwt) : ()=> addLikes(item.id, id, jwt)}>Like{liked === true ? 'd': ''} </p>
                 <FontAwesomeIcon icon={faComment} className="icon"/>
                 <p onClick={() => document.getElementById('post-input')!.style.display = 'flex'}>Comment</p>
                 <FontAwesomeIcon icon={faTurnDown} id="turn" className="icon"/>
@@ -60,7 +98,7 @@ export const Posts = ({item, num}:any) => {
             </div>
 
             <div className='posts-input-comments'>
-                <img src='' alt=''/>
+                <img src={profilePic} alt=''/>
                 <textarea id={'post-input-comment'+num} placeholder='Adicione um comentario'></textarea>
                 <button >Comment</button>
             </div>

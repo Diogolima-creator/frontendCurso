@@ -18,7 +18,7 @@ interface CourseState {
     moduleNow: string,
     lastModule: string,
     lastClass: string,
-    firstOpen: string,
+    firstOpen: Boolean,
     posts: PostsType[]  
 }
 
@@ -31,7 +31,7 @@ const initialState: CourseState = {
     moduleNow:'',
     lastModule:'',
     lastClass: '',
-    firstOpen: '',
+    firstOpen: false,
     posts: []
 }
 

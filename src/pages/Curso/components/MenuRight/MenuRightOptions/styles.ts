@@ -47,8 +47,8 @@ export const Container = styled.div`
     }
 
     .icon{
-        height:15px;
-        width:15px;
+        height:18px;
+        width:18px;
         margin-left:8px;
         color:purple;
     }

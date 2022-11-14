@@ -1,11 +1,15 @@
 import * as C from './styles';
-import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faUser,faAngleDown,faAngleUp, faBell} from '@fortawesome/free-solid-svg-icons';
+import { CaretDown, CaretUp, Bell } from 'phosphor-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import { User } from '../../../../entities/user';
 
-export const Profile = ({user}:any) => {
+interface ProfileType {
+    user?:User['profile']
+}
+
+export const Profile = ({user}:ProfileType) => {
 
     const[menuOpened,setmenuOppened] = useState(false);
     const cookies = new Cookies;
@@ -35,10 +39,10 @@ export const Profile = ({user}:any) => {
     
     return(
         <C.Container>
-            <FontAwesomeIcon icon={faBell} className="iconBell"/>
+            <Bell className="iconBell"/>
             <img src={user?.profilePic} alt=''/>
             <p>{user?.username}</p>
-            { menuOpened === false ? <FontAwesomeIcon icon={faAngleDown}className="iconDown" onClick={OpenMenu}/> : <FontAwesomeIcon icon={faAngleUp}className="iconDown" onClick={OpenMenu}/> }
+            { menuOpened === false ? <CaretDown className="iconDown" onClick={OpenMenu}/> : <CaretUp className="iconDown" onClick={OpenMenu}/> }
             <div id='menu'className='menu'>
                 <ul>
                     <li onClick={updateAccount}>Account</li>

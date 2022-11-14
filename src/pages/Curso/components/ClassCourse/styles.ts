@@ -28,7 +28,30 @@ export const Container = styled.div`
             margin:0px;
         }
     }
-    
+    .ballCheckIcon{
+        display:flex;
+        border-radius:45px;
+        width:28px;
+        height:28px;
+        margin-right:20px;
+        margin-left:40px;
+        align-items:center;
+        justify-content:center;
+        color:#66b366;
+
+        .Icon{
+                display:flex;
+                width:28px;
+                height:28px;
+                padding:0px;
+                margin:0px;
+            }
+
+        .NoIcon{
+            display:none;
+        }
+    }
+
     .ballCheck{
         display:flex;
         border-radius:45px;
@@ -43,8 +66,8 @@ export const Container = styled.div`
 
         .Icon{
                 display:flex;
-                width:22px;
-                height:22px;
+                width:20px;
+                height:20px;
                 padding:0px;
                 margin:0px;
             }

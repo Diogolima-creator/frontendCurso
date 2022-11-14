@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 /*
 
-CLARA <3
-
 #8b72a3 clarinho
 #47206e escuro
 #4c0080 claro
@@ -26,9 +24,9 @@ export const Container = styled.div`
         .icon{
             background-color: #47206e;
             color: #8b72a3;
-            padding:25px;
-            height:40px;
-            width:40px;
+            padding:17.5px;
+            height:55px;
+            width:55px;
             margin-right:40px;
         }
 

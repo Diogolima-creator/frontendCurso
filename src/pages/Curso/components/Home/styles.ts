@@ -136,16 +136,6 @@ export const Container = styled.div(({color}:userLevel)=>`
             margin-right:10px;
         }
 
-        .icon{
-            width:32px;
-            height:32px;
-            border:1px solid white;
-            padding:10px;
-            border-radius:45px;
-            margin-right:10px;
-            color: #8b72a3;
-        }
-
 
         textarea{
             background-color:transparent;
@@ -192,8 +182,8 @@ export const Container = styled.div(({color}:userLevel)=>`
         }
 
         .icon{
-            width:18px;
-            height:18px;
+            width:20px;
+            height:20px;
             padding:5px;
             margin-right:2px;
             color: #8b72a3;

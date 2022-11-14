@@ -1,13 +1,11 @@
 import * as C from './styles';
-import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faThumbsUp,faComment,faTurnDown,faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { ThumbsUp, ChatCircle, Share, PaperPlaneTilt } from 'phosphor-react';
 import Cookies from 'universal-cookie';
 import { useEffect, useState } from 'react';
 import { Comments } from '../Comments';
 import { useAppSelector } from '../../../../hooks/redux/index';
 import { removeLike, addLike } from '../../../../http/posts';
 import { PostsType } from '../../../../entities/posts';
-
 
 export const Posts = ({item, num}:PostsType) => {
 
@@ -87,13 +85,13 @@ export const Posts = ({item, num}:PostsType) => {
             </div>
             
             <div className='posts-footer'>
-                <FontAwesomeIcon icon={faThumbsUp} className="icon"/>
+                <ThumbsUp className="icon"/>
                 <p onClick={liked === true ? ()=> removeLikes(item.id, id, jwt) : ()=> addLikes(item.id, id, jwt)}>Like{liked === true ? 'd': ''} </p>
-                <FontAwesomeIcon icon={faComment} className="icon"/>
+                <ChatCircle className="icon"/>
                 <p onClick={() => document.getElementById('post-input')!.style.display = 'flex'}>Comment</p>
-                <FontAwesomeIcon icon={faTurnDown} id="turn" className="icon"/>
+                <Share className="icon"/>
                 <p>Share</p>
-                <FontAwesomeIcon icon={faPaperPlane} className="icon"/>
+                <PaperPlaneTilt className="icon"/>
                 <p>Send</p>
             </div>
 
@@ -103,8 +101,8 @@ export const Posts = ({item, num}:PostsType) => {
                 <button >Comment</button>
             </div>
             <div id={'post-area-comments'+num} className='posts-area-comments'>
-                {comments.map((com:any) => 
-                            <Comments com={com}/>
+                {comments.map((props:any) => 
+                            <Comments com={props.com}/>
                         )}             
             </div>
             

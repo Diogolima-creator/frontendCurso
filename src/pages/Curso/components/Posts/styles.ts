@@ -81,9 +81,7 @@ export const Container = styled.div(({color}:any) =>`
             p:hover{
                 opacity:.3;
             }
-            #turn{
-                transform: rotate(270deg)
-            }
+           
         }
         
         .userlevel{

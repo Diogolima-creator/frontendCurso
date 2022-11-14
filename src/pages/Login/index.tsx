@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { loginEmail, loginUsername } from '../../http/login';
 import Cookies from 'universal-cookie'
 //import { useNotification } from '../../hooks/useNotification';
@@ -70,7 +69,6 @@ const Login = () => {
                     </div>
                 </form>
             </div>     
-            {/* {<Poupup top={'50'} left={'850'} text={notify.text} anima={notify.animaPop}/>} */}
         </C.Container>
     )
 }

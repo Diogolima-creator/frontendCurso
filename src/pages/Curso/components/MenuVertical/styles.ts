@@ -38,7 +38,7 @@ export const Container = styled.div`
             color: #8b72a3;
             cursor:pointer;
             background-color:transparent;
-            width:25px;
-            height:25px;
+            width:28px;
+            height:28px;
         }
 `;

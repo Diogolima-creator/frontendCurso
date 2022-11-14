@@ -81,9 +81,7 @@ export const Container = styled.div`
                 width:16px;
                 height:16px;
                 padding:0px;
-                margin:0px;
-                
-                
+                margin:0px;  
             }
 
             .NoIcon{
@@ -93,25 +91,23 @@ export const Container = styled.div`
             }
         }
 
-        .ballCheckBord{
+        .ballCheckBoard{
             display:flex;
             align-items:center;
             justify-content:center;
             border-radius:45px;
-            width:14px;
-            height:14px;
-            border:0px solid white;
-            margin-right:10px;
+            width:21px;
+            height:21px;
+            margin-right:5px;
+            margin-left:-2px;
             color:#4ca64c;
 
             .Icon{
                 display:flex;
-                width:16px;
-                height:16px;
+                width:22px;
+                height:22px;
                 padding:0px;
-                margin:0px;
-                
-                
+                margin:0px;  
             }
 
             .NoIcon{

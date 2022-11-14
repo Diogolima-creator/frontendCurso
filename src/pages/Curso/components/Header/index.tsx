@@ -1,14 +1,18 @@
 import * as C from './styles'
-import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faRocket} from '@fortawesome/free-solid-svg-icons';
+import { RocketLaunch} from 'phosphor-react';
 import { Profile } from '../Profile';
+import { User } from '../../../../entities/user';
 
-export const Header = ({user}:any) => {
+interface HeaderType {
+    user?: User['profile']
+}
+
+export const Header = ({user}:HeaderType) => {
 
     return(
         <C.Container>
             <div className='left'>
-                <FontAwesomeIcon icon={faRocket} className='icon'/>
+                <RocketLaunch className='icon'/>
                 <h1>Curso NCSM</h1>
             </div>  
             <Profile user={user} />    

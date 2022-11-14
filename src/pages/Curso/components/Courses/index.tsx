@@ -2,20 +2,24 @@ import { ClassCourse } from '../ClassCourse';
 import { MenuRight } from '../MenuRight';
 import * as C from './styles';
 import { useState, useEffect } from 'react';
-//import { CourseAction, useCourse } from '../../context/CourseContext'
 import Cookies from 'universal-cookie';
 import { getClasses } from '../../../../http/classes';
 import { useAppSelector } from '../../../../hooks/redux';
+import { User } from '../../../../entities/user';
+import { Classes } from '../../../../entities/classes';
 
-export const Courses = ({user}:any) => {  
-    const[classes,setClasses] = useState();
-    //const{state,dispatch} = useCourse();
+export interface CoursesType{
+    user?:User['profile']
+}
+
+export const Courses = (props:CoursesType) => {  
+    const[classes,setClasses] = useState<Classes>();
     const cookies = new Cookies();
     const jwt = cookies.get('jwt');
     const classType = useAppSelector((state)=> state.course.classType)
 
     async function getClass(){
-        let res = await getClasses(classType,jwt)
+        let res:Classes = await getClasses(classType,jwt)
         setClasses(res)
         return res
     }
@@ -27,8 +31,8 @@ export const Courses = ({user}:any) => {
     
     return(
         <C.Container>
-            <ClassCourse user={user} classes={classes} />
-            <MenuRight user={user} classes={classes} />
+            <ClassCourse user={props.user} classes={classes} />
+            <MenuRight user={props.user} classes={classes} />
         </C.Container>
     )
 }

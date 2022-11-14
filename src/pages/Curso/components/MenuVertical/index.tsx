@@ -1,6 +1,5 @@
 import * as C from './styles';
-import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faHouse, faShuttleSpace, faCirclePlay, faJetFighter } from '@fortawesome/free-solid-svg-icons';
+import { House, Rocket, PlayCircle, FlyingSaucer } from 'phosphor-react';
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import { setMenuSelected } from "../../../../store/course";
@@ -26,19 +25,19 @@ export const MenuVertical = () => {
         <C.Container>
             <div className="menu">
                 <div onClick={() => changeSelect(0)} id='0' className="menu-items">
-                    <FontAwesomeIcon icon={faHouse} className="icon"/>
+                    <House className="icon"/>
                     <p>Home</p>
                 </div>
                 <div onClick={() => changeSelect(1)} id='1' className="menu-items"> 
-                    <FontAwesomeIcon icon={faShuttleSpace} className="icon"/>
+                    <Rocket className="icon"/>
                     <p>Classes</p>
                 </div>
                 <div onClick={() => changeSelect(2)} id='2' className="menu-items"> 
-                    <FontAwesomeIcon icon={faCirclePlay} className="icon"/>
+                    <PlayCircle className="icon"/>
                     <p>Live</p>
                 </div>
-                <div onClick={() => changeSelect(3)} id='3' className="menu-items"> 
-                    <FontAwesomeIcon icon={faJetFighter} className="icon"/>
+                <div id='3' className="menu-items"> 
+                    <FlyingSaucer className="icon"/>
                     <p>Training</p>
                 </div>
             </div>

@@ -1,20 +1,20 @@
 import * as C from './styles'
-import {FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-import { faUser,faImage,faPlay,faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { Image, Play, Calendar} from 'phosphor-react'
 import Cookies from 'universal-cookie';
 import { useState, useEffect } from 'react';
 import { Posts } from '../Posts';
 import { newsArticle } from '../../../../entities/news';
-//import * as Curso from '../../../services/Curso';
 import { Loading } from '../../../../components/Loading';
-//import { Poupup } from '../Poupup';
-//import { useNotification } from '../../hooks/useNotification';
-import { useAppSelector, useAppDispatch } from '../../../../hooks/redux';
 import { newsRequest } from '../../../../http/news';
 import { getPost } from '../../../../http/posts';
 import { createPost, updateImage } from '../../../../http/posts';
+import { User } from '../../../../entities/user';
 
-export const Home = ({user}:any) => {
+interface HomeType {
+    user?:User['profile']
+}
+
+export const Home = ({user}:HomeType) => {
 
     const cookies = new Cookies();
     const[posts,setPosts]= useState([])
@@ -28,7 +28,7 @@ export const Home = ({user}:any) => {
     //const notify = useNotification();
   
     const updateColors = () => {
-        let level = user.level;
+        let level = user!.level;
         if(level.toUpperCase() === 'GOLD'){
             setColor('gold');
         }
@@ -88,9 +88,9 @@ export const Home = ({user}:any) => {
     async function createPostFunction(){
         var file = (document.querySelector('input[name=image]') as HTMLInputElement)!.files!
         const captionPost = (document.getElementById('caption') as HTMLInputElement).value;
-        const username = user.username;
-        const level =  user.level;
-        const profilePic = user.profilePic;
+        const username = user!.username;
+        const level =  user!.level;
+        const profilePic = user!.profilePic;
         if(file[0] !== undefined){
             const imgUrlPost = await updateImage(file[0])
             createPost(username,level,profilePic,imgUrlPost,captionPost,jwt)
@@ -113,19 +113,19 @@ export const Home = ({user}:any) => {
         <C.Container color={color}>
             <div className='profile'>
                   {loadingProfile === true && <div><div className='profile-description'>
-                        <img src={user.profilePic} alt=''></img>
-                        <p className='user'>{user.username}</p>
-                        <p className='user-description'>{user.description}</p>
+                        <img src={user!.profilePic} alt=''></img>
+                        <p className='user'>{user!.username}</p>
+                        <p className='user-description'>{user!.description}</p>
                 </div>
                 <div className='profile-plan-active'>
-                        <p className='userlevel'>{user.level.toUpperCase()}</p>
-                        {user.level.toUpperCase() === 'GOLD' && <div><p>10 Aulas de Java Script</p>
+                        <p className='userlevel'>{user!.level.toUpperCase()}</p>
+                        {user!.level.toUpperCase() === 'GOLD' && <div><p>10 Aulas de Java Script</p>
                         <p className='plan-description'>Tudo que você precisa aprender em 19 aulas, Methods, Document, Elements, HTML, forms, CSS,
                              Anmations, Events, Event LIstener, navigation,nodes, Collections, Node lists </p></div>}
-                        {user.level.toUpperCase() === 'PLATINUM' && <div><p>75 Aulas de Java Script e ReactJS</p>
+                        {user!.level.toUpperCase() === 'PLATINUM' && <div><p>75 Aulas de Java Script e ReactJS</p>
                             <p className='plan-description'>Tudo que você precisa aprender em 75 aulas, Methods, Document, Elements, HTML, forms, CSS,
                              components,hooks,redux,context,api </p></div>}
-                        {user.level.toUpperCase() === 'DIAMOND' && <div><p>Todas as Aulas de Java Script,ReactJs,NodeJS</p>
+                        {user!.level.toUpperCase() === 'DIAMOND' && <div><p>Todas as Aulas de Java Script,ReactJs,NodeJS</p>
                             <p className='plan-description'>Tudo que você precisa aprender, Methods, Document, Elements, HTML, forms, CSS,
                              Components,Hooks,Redux,Context,API,API-REST,Express,Axios,CORS...</p></div>}
                 </div>
@@ -151,11 +151,11 @@ export const Home = ({user}:any) => {
                     {loadingInput === true && <div className='posts-input-footer'>
                         <img alt='' id='img'></img>
                         <div className='posts-input-footer-icons'>
-                            <label htmlFor="inputImage"><FontAwesomeIcon icon={faImage} className="icon"/><p>Picture</p></label>
+                            <label htmlFor="inputImage"><Image className="icon"/><p>Picture</p></label>
                             <input type="file" name="image" id='inputImage' onChange={ImgUploaded}></input>
-                            <FontAwesomeIcon icon={faPlay} className="icon"/>
+                            <Play className="icon"/>
                             <p>Video</p>
-                            <FontAwesomeIcon icon={faCalendarDays} className="icon"/>
+                            <Calendar className="icon"/>
                             <p>Event</p>
                             <button onClick={() => ((document.getElementById('caption') as HTMLInputElement).value === '' ? alert('Digite algo para publicar!'): createPostFunction())}>Submit</button>
                         </div>

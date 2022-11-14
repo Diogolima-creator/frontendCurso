@@ -1,6 +1,11 @@
 import * as C from './styles';
 
-export const Comments = ({com}:any) => {
+
+interface CommentsType {
+    com: [string,string,string,string]
+}
+
+export const Comments = ({com}:CommentsType) => {
     return(
         <C.Container>
                 <img src={com[0]} alt=''></img>

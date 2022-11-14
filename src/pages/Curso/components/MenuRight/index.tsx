@@ -1,13 +1,18 @@
 import * as C from './styles'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faAngleDown} from '@fortawesome/free-solid-svg-icons';
+import { CaretDown } from 'phosphor-react';
 import { MenuRightMap } from './MenuRightMap';
 import { MenuRightOptions } from './MenuRightOptions';
-import { useState } from 'react';
 
-export const MenuRight = ({classes}:any, {user}:any) => {
+import { Classes } from '../../../../entities/classes';
+import { User } from '../../../../entities/user';
+
+
+interface MenuRightType {
+    classes?: Classes,
+    user?: User['profile']
+}
+export const MenuRight = (props:MenuRightType) => {
     
-
     const openMenuOptions = () => {
         if(document.getElementById('MenuRightOptions')!.style.display !== 'flex'){
             document.getElementById('MenuRightOptions')!.style.display = 'flex';
@@ -19,21 +24,21 @@ export const MenuRight = ({classes}:any, {user}:any) => {
     return(
         <C.Container>
             <div className='Menu-header'>
-                {classes !== undefined && classes.Type === 'JavaScript' && <div className='img'>JS</div>}
-                {classes !== undefined && classes.Type === 'React' && <img src='https://thebhwgroup.com/sites/default/images/react_logo.png' alt = '' ></img>}
+                {props.classes !== undefined && props.classes.Type === 'JavaScript' && <div className='img'>JS</div>}
+                {props.classes !== undefined && props.classes.Type === 'React' && <img src='https://thebhwgroup.com/sites/default/images/react_logo.png' alt = '' ></img>}
                 <div className='Menu-header-text'>
-                    <p className='title'>Curso {classes !== undefined  ? classes.Type : ''}</p>
-                    <p className='author'>{classes !== undefined ? classes.Author : ''}</p>
+                    <p className='title'>Curso {props.classes !== undefined  ? props.classes.Type : ''}</p>
+                    <p className='author'>{props.classes !== undefined ? props.classes.Author : ''}</p>
                     
                 </div>
-                <FontAwesomeIcon onClick = {openMenuOptions} icon={faAngleDown} className="icon"/>
+                <CaretDown onClick = {openMenuOptions} className="icon"/>
                 <div id='MenuRightOptions'>
                     <MenuRightOptions />
                 </div>
                 
             </div>
             <div className='Menu-Modules-list'>
-                {classes !== undefined && <MenuRightMap user={user} classeMenu={classes.Modules[0]}/> }
+                {props.classes !== undefined && <MenuRightMap user={props.user} classeMenu={props.classes.Modules[0]}/> }
             </div>
         </C.Container>
     )

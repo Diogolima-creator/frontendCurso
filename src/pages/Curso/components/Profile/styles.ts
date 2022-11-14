@@ -26,8 +26,8 @@ export const Container = styled.div`
     }
 
     .iconBell{
-        width:15px;
-        height:15px;
+        width:20px;
+        height:20px;
         color:white;
         cursor:pointer;
         transition:2s;

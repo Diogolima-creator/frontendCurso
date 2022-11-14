@@ -8,7 +8,7 @@ interface loginSuccessful {
 
 
 export async function signUp(username:string, email:string, password:string, level:string, passwordConfirmation:string){
-
+  console.log(level)
   let result:loginSuccessful = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/signup`,{
                 method: 'POST',
                 headers:{

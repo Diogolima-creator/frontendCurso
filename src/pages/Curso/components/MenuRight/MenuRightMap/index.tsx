@@ -20,7 +20,6 @@ export const MenuRightMap = (props:MenuRightMapType) => {
     const dispatch = useAppDispatch();
     const id = cookies.get('id');
     const jwt = cookies.get('jwt');
-    console.log(props.classeMenu,'SEXOOOOOOOOOOOOOOOOO')
     
     const handleWidth = (key:number) => {
         if( document.getElementById(`${key+'Map'}`)!.style.display !== 'none' ){

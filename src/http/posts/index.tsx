@@ -1,6 +1,6 @@
 import * as Curso from '../../../services/Curso';
 export async function createPost(username:string,level:string,profilePic:string, imgUrlPost:string | undefined, captionPost:string,jwt:string){
-  let result = await fetch('http://localhost:9999/api/createPost',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/createPost`,{
                 method: 'POST',
                 headers:{
                     'Content-type' : 'application/json',
@@ -30,7 +30,7 @@ export async function updateImage(file:any){
 }
 
 export async function getPost(jwt:string){
-  let result = await fetch('http://localhost:9999/api/getPost',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/getPost`,{
                 method: 'GET',
                 headers:{
                     'Content-type' : 'application/json',
@@ -41,7 +41,7 @@ export async function getPost(jwt:string){
 }
 
 export async function addComment(profilePic:string, comment:string, username:string, level:string, id:string, jwt:string){
-  let result = await fetch('http://localhost:9999/api/addComment',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/addComment`,{
                 method: 'PUT',
                 headers:{
                     'Content-type' : 'application/json',
@@ -55,7 +55,7 @@ export async function addComment(profilePic:string, comment:string, username:str
 }
 
 export async function addLike(idPost:string, idUser:string, jwt:string){
-  let result = await fetch('http://localhost:9999/api/addLike',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/addLike`,{
                 method: 'PUT',
                 headers:{
                     'Content-type' : 'application/json',
@@ -69,7 +69,7 @@ export async function addLike(idPost:string, idUser:string, jwt:string){
 }
 
 export async function removeLike(idPost:string, idUser:string, jwt:string){
-  let result = await fetch('http://localhost:9999/api/removeLike',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/removeLike`,{
                 method: 'PUT',
                 headers:{
                     'Content-type' : 'application/json',

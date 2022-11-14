@@ -1,5 +1,5 @@
 export async function getClasses(classType:string, jwt:string){
-  let result = await fetch('http://localhost:9999/api/getClasses',{
+  let result = await fetch(`${import.meta.env.VITE_URLBACKTEST}/api/getClasses`,{
                 method: 'POST',
                 headers:{
                     'Content-type' : 'application/json',

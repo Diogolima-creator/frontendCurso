@@ -3,12 +3,12 @@ import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyCguslA-aD85ccN24YA5gIrZtv_OksUzTQ',
-    authDomain: 'cursoncsm.firebaseapp.com',
-    projectId: 'cursoncsm',
-    storageBucket: 'cursoncsm.appspot.com',
-    messagingSenderId: '25495849924',
-    appId: '1:25495849924:web:c891e2ac84e010a69eb291'
+    apiKey: `${import.meta.env.VITE_APIKEY}`,
+    authDomain: `${import.meta.env.VITE_AUTHDOMAIN}`,
+    projectId: `${import.meta.env.VITE_PROJECTID}`,
+    storageBucket: `${import.meta.env.VITE_STORAGEBUCKET}`,
+    messagingSenderId: `${import.meta.env.VITE_MESSAGINGSENDERID}`,
+    appId: `${import.meta.env.VITE_APPID}`
   };
 
 const firebaseApp = initializeApp(firebaseConfig);

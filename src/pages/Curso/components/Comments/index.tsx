@@ -6,6 +6,7 @@ interface CommentsType {
 }
 
 export const Comments = ({com}:CommentsType) => {
+    console.log(com)
     return(
         <C.Container>
                 <img src={com[0]} alt=''></img>

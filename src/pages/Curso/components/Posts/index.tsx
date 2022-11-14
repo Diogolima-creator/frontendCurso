@@ -7,6 +7,10 @@ import { useAppSelector } from '../../../../hooks/redux/index';
 import { removeLike, addLike } from '../../../../http/posts';
 import { PostsType } from '../../../../entities/posts';
 
+interface CommentsType {
+    com: [string,string,string,string]
+}
+
 export const Posts = ({item, num}:PostsType) => {
 
     let colors = {
@@ -101,8 +105,8 @@ export const Posts = ({item, num}:PostsType) => {
                 <button >Comment</button>
             </div>
             <div id={'post-area-comments'+num} className='posts-area-comments'>
-                {comments.map((props:any) => 
-                            <Comments com={props.com}/>
+                {comments.map((com:any) => 
+                            <Comments com={com}/>
                         )}             
             </div>
             

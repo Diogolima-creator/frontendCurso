@@ -28,7 +28,8 @@ export const ClassCourse = (props:ClassCourseType) => {
     const[posModule,setposModule] = useState('');
     const[posClass,setposClass] = useState('');
     
- 
+    console.log(props.user,props.classes)
+
     if(firstOpen !== true){
         dispatch(setModuleNow(props.user!.classes[0]))
         dispatch(setClassNow(props.user!.classes[1]))

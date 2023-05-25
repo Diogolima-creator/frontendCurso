@@ -31,8 +31,8 @@ export const ClassCourse = (props:ClassCourseType) => {
     console.log(props.user,props.classes)
 
     if(firstOpen !== true){
-        dispatch(setModuleNow(props.user!.classes[0]))
-        dispatch(setClassNow(props.user!.classes[1]))
+        dispatch(setModuleNow(props.user!.classes[1]))
+        dispatch(setClassNow(props.user!.classes[0]))
         dispatch(setVideoClassNow(props.user!.classes[2]))
         dispatch(setFirstOpen(true))
         
@@ -132,6 +132,8 @@ export const ClassCourse = (props:ClassCourseType) => {
         console.log(moduleNow)
         let words = moduleNow.split('.');
         let ModulePos = Object.keys(props.classes.Modules[0]).findIndex((item) => item === words[1]);
+        console.log(ModulePos)
+        console.log(Object.keys(props.classes.Modules[0]))
         let classPos = Object.values<Classes['Modules']>(props.classes.Modules[0])[ModulePos].findIndex((item:any) => item[0] === classNow);
         setposModule(ModulePos.toString());
         setposClass(classPos.toString());

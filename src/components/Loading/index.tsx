@@ -10,7 +10,7 @@ interface LoadingTypes {
 export const Loading = (props:LoadingTypes) => {
     return(
         <C.Container mt={props.mt} mr={props.mr} ml={props.ml} tam={props.tam}>
-                <img src='images/goldwell-loader.gif' alt=''/>
+                <img src='https://github.com/Diogolima-creator/frontendCurso/assets/62246037/82778772-9303-4ea2-974c-d37920547fcf' alt=''/>
         </C.Container>
     )
 }
